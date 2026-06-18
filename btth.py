@@ -6,15 +6,15 @@ class Employee(ABC):
         self.name = name
 
     def display_info(self):
-        match self.__class__.__name__:
-            case "FullTimeEmployee":
-                emp_type = "Full-time"
-            case "PartTimeEmployee":
-                emp_type = "Part-time"
-            case "InternEmployee":
-                emp_type = "Intern"
-            case _:
-                emp_type = "Unknown"
+        if isinstance(self, FullTimeEmployee):
+            emp_type = "Full-time"
+        elif isinstance(self, PartTimeEmployee):
+            emp_type = "Part-time"
+        elif isinstance(self, InternEmployee):
+            emp_type = "Intern"
+        else:
+            emp_type = "Unknown"
+
         print(f"Mã NV: {self.employee_id} | Họ tên: {self.name} | Loại: {emp_type}")
 
     @abstractmethod
